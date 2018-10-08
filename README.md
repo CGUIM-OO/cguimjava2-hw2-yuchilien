@@ -2,7 +2,8 @@
 
 ## What we need in Card class:
 
-- Fields: private String suit, private String rank
+- Fields: private String suit, 
+			private String rank
 - Constructor: 
     - Card (suit , rank)
 - Method: 

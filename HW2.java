@@ -3,115 +3,177 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 /**
- * @author TODO: please add student ID and name here
- * Try to write some comments for your codes (methods, 15 points)
+ * @author TODO: please add student ID and name here b0444237 ³s¬R´Ñ 
+ * Try to write some comments for your codes (methods, 15 points) 
+ * 
  */
 public class HW2 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("input N (deck of cards):");
-		String testn= sc.nextLine(); 
-        
-		int nDeck=Integer.parseInt(testn);
-		Deck deck=new Deck(nDeck);
-		//TODO: please check your output, make sure that you print all cards on your screen (10 points)
+		String testn = sc.nextLine();
+
+		int nDeck = Integer.parseInt(testn);
+		Deck deck = new Deck(nDeck);
+		// TODO: please check your output, make sure that you print all cards on your
+		// screen (10 points)
 		deck.printDeck();
-		
-		if(isAllCardsCorrect(deck.getAllCards(),nDeck)){
+
+		if (isAllCardsCorrect(deck.getAllCards(), nDeck)) {
 			System.out.println("Well done!");
-		}else{
+		} else {
 			System.out.println("Error, please check your sourse code");
 		}
 	}
+
 	/**
 	 * This method is used for checking your result, not a part of your HW2
-	 * @param allCards æ‰€æœ‰çš„ç‰Œ
-	 * @param nDeck ç¸½å…±æœ‰å¹¾å‰¯ç‰Œ
+	 * 
+	 * @param allCards ©Ò¦³ªºµP
+	 * @param nDeck    Á`¦@¦³´X°ÆµP
 	 * @return
 	 */
-	private static boolean isAllCardsCorrect(ArrayList<Card> allCards,int nDeck){
-		//check the output 
-		boolean isCorrect=true;;
-		HashMap <String,Integer> checkHash=new HashMap<String,Integer>();
-		for(Card card:allCards){
-			int suit= card.getSuit();
+	private static boolean isAllCardsCorrect(ArrayList<Card> allCards, int nDeck) {
+		// check the output
+		boolean isCorrect = true;
+		;
+		HashMap<String, Integer> checkHash = new HashMap<String, Integer>();
+		for (Card card : allCards) {
+			int suit = card.getSuit();
 			int rank = card.getRank();
-			if(suit>4||suit<1||rank>13||rank<1){
-				isCorrect=false;
+			if (suit > 4 || suit < 1 || rank > 13 || rank < 1) {
+				isCorrect = false;
 				break;
 			}
-			if(checkHash.containsKey(suit+","+rank)){
-				checkHash.put(suit+","+rank, 
-						checkHash.get(suit+","+rank)+1);
-			}else{
-				checkHash.put(suit+","+rank, 1);
+			if (checkHash.containsKey(suit + "," + rank)) {
+				checkHash.put(suit + "," + rank, checkHash.get(suit + "," + rank) + 1);
+			} else {
+				checkHash.put(suit + "," + rank, 1);
 			}
 
 		}
-		if(checkHash.keySet().size()==52){
-			for(int value:checkHash.values()){
-				if(value!=nDeck){
-					isCorrect=false;
+		if (checkHash.keySet().size() == 52) {
+			for (int value : checkHash.values()) {
+				if (value != nDeck) {
+					isCorrect = false;
 					break;
 				}
 			}
-		}else{
-			isCorrect=false;
+		} else {
+			isCorrect = false;
 		}
 		return isCorrect;
 	}
 
 }
+
 /**
  * Description: TODO: please add description here
+ * ¥Î°j°é²£¥Í©Ò¦³ªºµP¦A©ñ¶iArrayList
+ * °j°é²Ä¤@¼h:¦@¦³´X°ÆµPdeck
+ * °j°é²Ä¤G¼h:¤À°tªá¦âsuit
+ * °j°é²Ä¤T¼h:¤À°tÂI¼Ærank
  */
-class Deck{
+class Deck {
 	private ArrayList<Card> cards;
-	//TODO: Please implement the constructor (30 points)
-	public Deck(int nDeck){
-		cards=new ArrayList<Card>();
-		//1 Deck have 52 cards, https://en.wikipedia.org/wiki/Poker
-		//Hint: Use new Card(x,y) and 3 for loops to add card into deck
-		//Sample code start
-		//Card card=new Card(1,1); ->means new card as clubs ace
-		//cards.add(card);
-		//Sample code end
 
-	}	
-	//TODO: Please implement the method to print all cards on screen (10 points)
-	public void printDeck(){
-		//Hint: print all items in ArrayList<Card> cards, 
-		//TODO: please implement and reuse printCard method in Card class (5 points)
+	// TODO: Please implement the constructor (30 points)
+	public Deck(int nDeck) {
+		cards = new ArrayList<Card>();
+		// 1 Deck have 52 cards, https://en.wikipedia.org/wiki/Poker
+		// Hint: Use new Card(x,y) and 3 for loops to add card into deck
+		// Sample code start
+		// Card card=new Card(1,1); ->means new card as clubs ace
+		// cards.add(card);
+		// Sample code end
+		
+		// Á`¦@¦³´X°ÆµP´N²£¥Í
+		for (int i = 0; i < nDeck; i++) {
+			// ¥þ³¡ªá¦â(1~4)
+			for (int s = 1; s < 5; s++) {
+				// ¥þ³¡ÂI¼Æ(1~13)
+				for (int r = 1; r < 14; r++) {
+					Card card = new Card(s, r);
+					cards.add(card);
+				}
+			}
 
+		}
 	}
-	public ArrayList<Card> getAllCards(){
+
+	// TODO: Please implement the method to print all cards on screen (10 points)
+	public void printDeck() {
+		// Hint: print all items in ArrayList<Card> cards,
+		// TODO: please implement and reuse printCard method in Card class (5 points)
+		//¦L¥XµP­±¤W©Ò¦³ªºµP
+		System.out.println(cards);
+	}
+
+	public ArrayList<Card> getAllCards() {
 		return cards;
 	}
 }
+
 /**
  * Description: TODO: please add description here
+ * suit¬Oªá¦â,rank¬OÂI¼Æ «Ø¥ß³o¨â­ÓÄÝ©Ê ÁÙ¦³«Øºc¤l
+ * Âà´«¼Æ¦r¥N½X»Pªá¦â©MÂI¼Æªº­^¤å¦W¦r
  */
-class Card{
-	private int suit; //Definition: 1~4, Clubs=1, Diamonds=2, Hearts=3, Spades=4
-	private int rank; //1~13
+class Card {
+	private int suit; // Definition: 1~4, Clubs=1, Diamonds=2, Hearts=3, Spades=4
+	private int rank; // 1~13
+
 	/**
-	 * @param s suit
-	 * @param r rank
+	 * @param s suitªá¦â
+	 * @param r rankÂI¼Æ
 	 */
-	public Card(int s,int r){
-		suit=s;
-		rank=r;
-	}	
-	//TODO: 1. Please implement the printCard method (20 points, 10 for suit, 10 for rank)
-	public void printCard(){
-		//Hint: print (System.out.println) card as suit,rank, for example: print 1,1 as Clubs Ace
+	public Card(int s, int r) {
+		suit = s;
+		rank = r;
+	}
+
+	// TODO: 1. Please implement the printCard method (20 points, 10 for suit, 10
+	// for rank)
+	public void printCard() {
+		// Hint: print (System.out.println) card as suit,rank, for example: print 1,1 as
+		// Clubs Ace
+		//«Ø¥ß¨â­ÓStringÅÜ¼Æ¨Ó¦sÂà´««áªº­^¤å¦W¦r
+		String sString="";//¦sªá¦â
+		String rString="";//¦sÂI¼Æ
+		// «ö·Óªá¦â,¼Æ¦r1~4¤À§O¹ïÀ³ªºªá¦â,§PÂ_¬O´X¸¹¦A¦s¤JsString
+		if (suit == 1) {
+			sString = "Clubs";
+		} else if (suit == 2) {
+			sString = "Diamonds";
+		} else if (suit == 3) {
+			sString = "Hearts";
+		} else if (suit == 4) {
+			sString = "Spades";
+		}
+		// «ö·ÓÂI¼Æ,1¡B11¡B12¡B13ÂI¤À§O¦³­^¤å¦W¦r©Ò¥H­n°µÂà´«¦A¦s¤JrString
+		if (rank == 1) {
+			rString = "Ace";
+		} else if (rank == 11) {
+			rString = "Jack";
+		} else if (rank == 12) {
+			rString = "Queen";
+		} else if (rank == 13) {
+			rString = "King";
+		} else {
+			//¨ä¥L¨S¦³¦W¦rªºÂI¼Æª½±µÂà¦¨¤å¦r«¬ºA
+			rString = Integer.toString(rank);
+		}
+		// ¦L¥XµPªºªá¦â¤ÎÂI¼Æ
+		System.out.println(sString + "," + rString);
 
 	}
-	public int getSuit(){
+
+	public int getSuit() {
 		return suit;
 	}
-	public int getRank(){
+
+	public int getRank() {
 		return rank;
 	}
 }
