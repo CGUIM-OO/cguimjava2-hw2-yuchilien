@@ -5,7 +5,9 @@ import java.util.Scanner;
 /**
  * @author TODO: please add student ID and name here b0444237 連昱棋 
  * Try to write some comments for your codes (methods, 15 points) 
- * 
+ * 當使用者輸入要有幾副牌的時候可以產生所有的牌
+ * 一副牌有52張，4種花色，13種點數 用迴圈產生
+ * 給定所有牌的名字 存到字串變數裡
  */
 public class HW2 {
 
@@ -107,7 +109,12 @@ class Deck {
 		// Hint: print all items in ArrayList<Card> cards,
 		// TODO: please implement and reuse printCard method in Card class (5 points)
 		//印出牌面上所有的牌
-		System.out.println(cards);
+		for(Card i:cards)//for each
+		{
+			i.printCard();
+		}
+		
+		
 	}
 
 	public ArrayList<Card> getAllCards() {
@@ -135,7 +142,7 @@ class Card {
 
 	// TODO: 1. Please implement the printCard method (20 points, 10 for suit, 10
 	// for rank)
-	public void printCard() {
+	public  void printCard() {
 		// Hint: print (System.out.println) card as suit,rank, for example: print 1,1 as
 		// Clubs Ace
 		//建立兩個String變數來存轉換後的英文名字
@@ -166,7 +173,7 @@ class Card {
 		}
 		// 印出牌的花色及點數
 		System.out.println(sString + "," + rString);
-
+	
 	}
 
 	public int getSuit() {
